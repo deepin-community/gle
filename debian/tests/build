@@ -1,0 +1,34 @@
+#!/bin/sh
+# autopkgtest check: Builds a small application against libgle, checking
+# if it compiles, links and runs successfully.
+
+set -e
+
+WORKDIR=$(mktemp -d)
+cleanup () {
+  if [ $? -ne 0 ]; then
+    echo "FAILED"
+  fi
+  rm -rf ${WORKDIR}
+}
+
+trap cleanup 0 INT QUIT ABRT PIPE TERM
+cd $WORKDIR
+cat <<EOF > build_test.c
+#include <stdio.h>
+#include <GL/gle.h>
+int main (int argc, char *argv[])
+{
+  int style = TUBE_NORM_EDGE | TUBE_JN_ANGLE | TUBE_JN_CAP;
+  gleSetJoinStyle(style);
+  int r = gleGetJoinStyle();
+  printf("join style set to %d and returned as %d\n", style, r);
+  return style != r;
+}
+EOF
+
+gcc -o build_test build_test.c -lgle
+echo "build: OK"
+[ -x build_test ]
+./build_test
+echo "run: OK"

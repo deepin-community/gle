@@ -1,0 +1,4 @@
+usr/include
+usr/lib/*/libgle.a
+usr/lib/*/libgle.so
+usr/share/man/man3

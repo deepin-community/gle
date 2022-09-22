@@ -1,0 +1,67 @@
+Source: gle
+Section: graphics
+Priority: optional
+Maintainer: Jamie Wilkinson <jaq@debian.org>
+Build-Depends: debhelper-compat (= 12),
+ dpkg-dev (>= 1.16.1.1~),
+ libxmu-dev,
+ libgl1-mesa-dev | libgl-dev,
+ libglu1-mesa-dev,
+ freeglut3-dev | libglut3-dev,
+ libxi-dev
+Standards-Version: 4.5.1
+Homepage: https://www.linas.org/gle/
+VCS-Browser: https://salsa.debian.org/debian/gle
+VCS-Git: https://salsa.debian.org/debian/gle.git
+Rules-Requires-Root: no
+
+Package: libgle3
+Section: libs
+Architecture: any
+Multi-Arch: same
+Depends: ${misc:Depends}, ${shlibs:Depends}, xlibmesa3-gl | libgl1
+Conflicts: glutg3 (<< 3.7-13)
+Description: OpenGL tubing and extrusion library
+ The GLE Tubing and Extrusion library is an extension to OpenGL for drawing
+ tubing and extrusions, including surfaces of revolution, sweeps, tubes,
+ polycones, polycylinders, and helicoids.  Generally the extruded surface
+ is specified with a 2D polyline that is extruded along a 3D path.  A local
+ coordinate system allows for additional flexibility in the primitives
+ drawn.  Extrusions may be texture mapped in a variety of ways.
+
+Package: libgle3-dev
+Section: libdevel
+Architecture: any
+Depends: ${misc:Depends}, libgle3 (= ${binary:Version}), libc6-dev, libgl1-mesa-dev | libgl-dev
+Conflicts: glutg3-dev (<< 3.7-13), libgle-dev (<= 3.0.7-2)
+Suggests: gle-doc
+Provides: libgle-dev
+Replaces: libgle-dev (<= 3.0.7-2)
+Multi-Arch: same
+Description: OpenGL tubing and extrusion library development files
+ The GLE Tubing and Extrusion library is an extension to OpenGL for drawing
+ tubing and extrusions, including surfaces of revolution, sweeps, tubes,
+ polycones, polycylinders, and helicoids.  Generally the extruded surface
+ is specified with a 2D polyline that is extruded along a 3D path.  A local
+ coordinate system allows for additional flexibility in the primitives
+ drawn.  Extrusions may be texture mapped in a variety of ways.
+ .
+ This package contains header files and static libraries.
+
+Package: gle-doc
+Section: doc
+Architecture: all
+Depends: ${misc:Depends}
+Provides: libgle-doc
+Replaces: libgle-doc (<= 3.0.7-2)
+Conflicts: libgle-doc (<= 3.0.7-2)
+Multi-Arch: foreign
+Description: OpenGL tubing and extrusion library documentation
+ The GLE Tubing and Extrusion library is an extension to OpenGL for drawing
+ tubing and extrusions, including surfaces of revolution, sweeps, tubes,
+ polycones, polycylinders, and helicoids.  Generally the extruded surface
+ is specified with a 2D polyline that is extruded along a 3D path.  A local
+ coordinate system allows for additional flexibility in the primitives
+ drawn.  Extrusions may be texture mapped in a variety of ways.
+ .
+ This package contains documentation and example code.
