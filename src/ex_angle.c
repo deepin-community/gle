@@ -18,7 +18,9 @@
  */
 
 
-#include <malloc.h>
+#if defined(_WIN32) && !defined(__clang__)
+# include <malloc.h>
+#endif
 #include <math.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -111,9 +113,9 @@ void draw_angle_style_front_cap (int ncp,	/* number of contour points */
    N3F(bi);
 
    tobj = gluNewTess ();
-   gluTessCallback (tobj, GLU_BEGIN, glBegin);
-   gluTessCallback (tobj, GLU_VERTEX, glVertex3dv);
-   gluTessCallback (tobj, GLU_END, glEnd);
+   gluTessCallback (tobj, GLU_BEGIN, (_GLUfuncptr)glBegin);
+   gluTessCallback (tobj, GLU_VERTEX, (_GLUfuncptr)glVertex3dv);
+   gluTessCallback (tobj, GLU_END, (_GLUfuncptr)glEnd);
 
 #ifdef LENIENT_TESSELATOR 
    gluBeginPolygon (tobj);
@@ -190,9 +192,9 @@ void draw_angle_style_back_cap (int ncp,	/* number of contour points */
    N3F (bi);
 
    tobj = gluNewTess ();
-   gluTessCallback (tobj, GLU_BEGIN, glBegin);
-   gluTessCallback (tobj, GLU_VERTEX, glVertex3dv);
-   gluTessCallback (tobj, GLU_END, glEnd);
+   gluTessCallback (tobj, GLU_BEGIN, (_GLUfuncptr)glBegin);
+   gluTessCallback (tobj, GLU_VERTEX, (_GLUfuncptr)glVertex3dv);
+   gluTessCallback (tobj, GLU_END, (_GLUfuncptr)glEnd);
 
 #ifdef LENIENT_TESSELATOR 
    gluBeginPolygon (tobj);
@@ -295,8 +297,8 @@ void extrusion_angle_join (int ncp,		/* number of contour points */
 
    /* malloc the storage we'll need for relaying changed contours to the
     * drawing routines. */
-   mem_anchor =  malloc (2 * 3 * ncp * sizeof(double)
-                      +  2 * 3 * ncp * sizeof(gleDouble));
+   mem_anchor =  malloc (2 * 3 * (size_t) ncp * sizeof(double)
+                      +  2 * 3 * (size_t) ncp * sizeof(gleDouble));
    front_loop = (gleDouble *) mem_anchor;
    back_loop = front_loop + 3 * ncp;
    front_norm = (double *) (back_loop + 3 * ncp);

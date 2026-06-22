@@ -1,3 +1,42 @@
+gle (3.1.2-1) unstable; urgency=medium
+
+  * New upstream release.
+
+ -- Jamie Wilkinson <jaq@debian.org>  Mon, 21 Aug 2023 10:33:23 +1000
+
+gle (3.1.1-1) unstable; urgency=medium
+
+  * New upstream release officially tagged.
+  * watch: Update patterns to match new upstream tag format.
+
+ -- Jamie Wilkinson <jaq@debian.org>  Fri, 18 Aug 2023 13:00:18 +1000
+
+gle (3.1.1~ds1-1) unstable; urgency=medium
+
+  * New upstream release.
+  * Update docs installation paths for new release.
+  * lint: Stop depending on obsolete package libgl1-mesa-dev.
+  * debian/watch: Update for new upstream, though no releases are tagged yet.
+  * control: Update Homepage to new upstream on GitHub.
+  * source/options: Include all changed files in the debian patch.  Closes: #1044369
+  * src/Makefile.am: Set LIBADD for dependent libraries.
+
+ -- Jamie Wilkinson <jaq@debian.org>  Fri, 18 Aug 2023 12:28:03 +1000
+
+gle (3.1.0-11) unstable; urgency=medium
+
+  [ Debian Janitor ]
+  * Update standards version to 4.6.1, no changes needed.
+  * Avoid explicitly specifying -Wl,--as-needed linker flag.
+  * Fix field name cases in debian/control (VCS-Browser ⇒ Vcs-Browser, VCS-Git ⇒ Vcs-Git).
+  * Remove constraints unnecessary since buster (oldstable)
+
+  [ Jamie Wilkinson ]
+  * Put Repository in upstream metadata.
+  * Set extend-diff-ignore for autoreconf modifications during build.
+
+ -- Jamie Wilkinson <jaq@debian.org>  Fri, 09 Dec 2022 06:14:55 +1100
+
 gle (3.1.0-10) unstable; urgency=medium
 
   [ Jamie Wilkinson ]

@@ -1,9 +1,9 @@
 ## -*-m4-*-
 
-dnl Process this file with autoconf to produce a configure script.
+dnl Process this file with autoreconf -vi to produce a configure script.
 
 # FILE:
-# configure.in
+# configure.ac
 #
 # FUNCTION:
 # implements checks for a variety of system-specific functions
@@ -23,9 +23,14 @@ dnl Process this file with autoconf to produce a configure script.
 ### check for various programs, and stuff (do this first because later
 ### commands depend on them):
 
-AC_INIT(src/gle.h)
-AM_INIT_AUTOMAKE(gle,3.1.0)
-AM_CONFIG_HEADER(config.h)
+AC_INIT([glextrusion], 3.1.2, [], [gle], [https://github.com/linas/glextrusion])
+LIBVERINFO="4:2:1"
+AM_INIT_AUTOMAKE([foreign])
+
+AC_CONFIG_MACRO_DIR([m4])
+
+m4_ifdef([AM_SILENT_RULES], [AM_SILENT_RULES([yes])],
+                            [AC_SUBST([AM_DEFAULT_VERBOSITY],1)])
 
 AC_PROG_CC
 AC_PROG_INSTALL
@@ -134,8 +139,9 @@ AC_CHECK_LIB(glut, glutSwapBuffers,
 #       cc @X_LIBS@ (-lfoo...) @X_PRE_LIBS@ -lX11 @X_EXTRA_LIBS@
 # (Perhaps X_LIBS should have been called X_LDFLAGS.)
 
-X_LIBS="-lgle $X_LIBS -lXt -lX11"
+X_LIBS="$X_LIBS -lXt -lX11"
 
+AC_SUBST(LIBVERINFO)
 AC_OUTPUT(
           Makefile
           src/Makefile
@@ -145,6 +151,5 @@ AC_OUTPUT(
           man/Makefile
           ms-visual-c/Makefile
           ms-visual-c/gle/Makefile
-          swig/Makefile,
-          [ln -sf src GL]
+          swig/Makefile
           )

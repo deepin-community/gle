@@ -13,7 +13,9 @@
  * Copyright (c) 1994,1995 Linas Vepstas <linas@linas.org>
  */
 
-#include <malloc.h>
+#if defined(_WIN32) && !defined(__clang__)
+# include <malloc.h>
+#endif
 #include <math.h>
 #include <stdlib.h>
 
@@ -96,7 +98,7 @@ setup_circle (gleGC *gc, int nslices)
 
    if (nslices > gc->slices) {
       gc->circle = (gleTwoVec *) realloc (gc->circle, 
-                                          sizeof(gleTwoVec)*2*nslices);
+                                          sizeof(gleTwoVec)*2*(size_t)nslices);
       gc->norm = &(gc->circle)[nslices];
    }
 

@@ -17,9 +17,6 @@
 
 #include <stdio.h>
 
-/* most of the build-specific info should be in configure.in */
-#include "../config.h"
-
 #ifndef TRUE
 #define TRUE 1
 #endif
@@ -196,8 +193,13 @@ typedef double gleVector[3];
 #include <windows.h>
 #endif
 
+#ifdef __APPLE_CC__ /* Darwin */
+#include <OpenGL/gl.h>
+#include <OpenGL/glu.h>
+#else
 #include <GL/gl.h>
 #include <GL/glu.h>
+#endif
 
 #if FLIP_NORMAL
 #define	N3F_F(x) {					\

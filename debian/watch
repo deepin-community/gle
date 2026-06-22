@@ -1,2 +1,6 @@
 version=4
-https://sf.net/gle/gle-([\d.]+)\.tar\.gz
+opts="searchmode=plain,\
+filenamemangle=s%gle-?@ANY_VERSION@%@PACKAGE@-$1.tar.xz%,\
+dversionmangle=s/[\+~](debian|dfsg|ds|deb)(\.?\d+)?$//" \
+https://api.github.com/repos/linas/glextrusion/tags?per_page=50 \
+https://api.github.com/repos/[^/]+/[^/]+/tarball/refs/tags/gle-@ANY_VERSION@

@@ -5,5 +5,5 @@ Abstract: This manual describes the GLE Tubing and Extrusion library.
 Section: Programming
 
 Format: HTML
-Index: /usr/share/doc/gle-doc/html/index.html
-Files: /usr/share/doc/gle-doc/html/*.html
+Index: /usr/share/doc/gle/html/index.html
+Files: /usr/share/doc/gle/html/*.html
