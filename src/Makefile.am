@@ -21,13 +21,14 @@ libgle_la_SOURCES = 	\
   view.c
 
 
-libgle_la_LDFLAGS = -version-info 4:0:1
+libgle_la_LDFLAGS = -version-info @LIBVERINFO@
+libgle_la_LIBADD = @X_LIBS@
 
-# make sure we install gle.h into /usr/include/GL/gle.h or thereabouts
+# Make sure we install gle.h into /usr/include/GL/gle.h or thereabouts
 pkgincludedir = $(includedir)/GL
 GLdir = $(includedir)/GL
 
-GL_DATA =	gle.h
+GL_DATA =	GL/gle.h
 
 noinst_HEADERS = 	\
   copy.h 		\
@@ -44,14 +45,14 @@ EXTRA_DIST = \
   .cvsignore \
   README.gutil \
   COPYING.src \
-  gle.h
+  GL/gle.h
 
-INCLUDES = \
-  @X_CFLAGS@
+AM_CFLAGS = \
+  @X_CFLAGS@ \
+  -I ${top_srcdir}/src/GL
 
-CFLAGS = @CFLAGS@ -Wall -pedantic -Wstrict-prototypes  -Wconversion
+AM_CFLAGS += -Wall -pedantic -Wstrict-prototypes  -Wconversion
 
 docdir = $(datadir)/doc/gle/
 
 doc_DATA = COPYING.src
-

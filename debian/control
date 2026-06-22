@@ -3,17 +3,16 @@ Section: graphics
 Priority: optional
 Maintainer: Jamie Wilkinson <jaq@debian.org>
 Build-Depends: debhelper-compat (= 12),
- dpkg-dev (>= 1.16.1.1~),
  libxmu-dev,
- libgl1-mesa-dev | libgl-dev,
+ libgl-dev,
  libglu1-mesa-dev,
  freeglut3-dev | libglut3-dev,
  libxi-dev
-Standards-Version: 4.5.1
-Homepage: https://www.linas.org/gle/
-VCS-Browser: https://salsa.debian.org/debian/gle
-VCS-Git: https://salsa.debian.org/debian/gle.git
+Standards-Version: 4.6.1
+Homepage: https://github.com/linas/glextrusion
 Rules-Requires-Root: no
+Vcs-Browser: https://salsa.debian.org/debian/gle
+Vcs-Git: https://salsa.debian.org/debian/gle.git
 
 Package: libgle3
 Section: libs
@@ -32,7 +31,7 @@ Description: OpenGL tubing and extrusion library
 Package: libgle3-dev
 Section: libdevel
 Architecture: any
-Depends: ${misc:Depends}, libgle3 (= ${binary:Version}), libc6-dev, libgl1-mesa-dev | libgl-dev
+Depends: ${misc:Depends}, libgle3 (= ${binary:Version}), libc6-dev, libgl-dev
 Conflicts: glutg3-dev (<< 3.7-13), libgle-dev (<= 3.0.7-2)
 Suggests: gle-doc
 Provides: libgle-dev
